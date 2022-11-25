@@ -1,4 +1,4 @@
-const { PORT, GIPHY_KEY } = process.env;
+const { PORT, GIPHY_KEY, LIMIT = "9" } = process.env;
 
 const express = require("express");
 const giphy = require("giphy-api")(GIPHY_KEY);
@@ -11,7 +11,7 @@ app.get("/api/giphy", async (req, res) => {
   giphy.search(
     {
       q: query,
-      limit: 9,
+      limit: Number(LIMIT),
     },
     function (err, result) {
       console.log(result);
